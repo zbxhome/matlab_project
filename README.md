@@ -1,4 +1,7 @@
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+<script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"> </script>
+formula1: $$n==x$$
+
+formula2: $$n!=x$$
 
 # 单相机乒乓球追踪 #
 假设只假设一台相机，我们能否从视频中恢复乒乓球的运动轨迹？
