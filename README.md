@@ -1,8 +1,3 @@
-<script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"> </script>
-formula1: $$n==x$$
-
-formula2: $$n!=x$$
-
 # 单相机乒乓球追踪 #
 假设只假设一台相机，我们能否从视频中恢复乒乓球的运动轨迹？
 
@@ -10,7 +5,11 @@ formula2: $$n!=x$$
 不使用checkerboard标定，直接利用乒乓球桌的信息来标定相机内外参数![球桌尺寸](table.jpg)
 
 ## 如何计算空间坐标 ##
-假设先不考虑镜头畸变，则图像上的点p对应于空间的一条直线，方程为:
+假设先不考虑镜头畸变，则图像上的点p对应于空间的一条直线，方程为: z * [x y 1] = M * [X Y Z 1]，其中(x,y)是像素坐标。假定我们知道乒乓球的bounding box，如果我们利用球上下顶点能否计算出 z 呢？
 
-$$x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}$$
-\\(x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}\\)
+其中上下顶点的(x,y)已知， 深度z未知， 乒乓球的世界坐标(X, Y, Z)未知， 但是乒乓球的实际尺寸已知，利用这个实际距离我们能计算出sqrt((X1 - X2)^2 + (Y1 - Y2)^2 + (Z1 - Z2)^2)，但是考虑方程左边sqrt((x1-x2)^2 + (y1-y2)^2) = sqrt((a(X1-X2))^2 + (b(Y1-Y2))^2 + (c(Z1-Z2))^2) / z, 这之间有个已知的常数，但是还是导致我们无法利用这两个点的信息来计算。
+
+假设考虑镜头畸变，则这样的等式关系更不可能成立了
+
+那么我们还有别的方法吗？
+
